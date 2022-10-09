@@ -61,9 +61,9 @@ public abstract class Bag {
      *       color of this bag to the given color.
      */
 
-
-
-
+    public void setColor(String newcolor) {
+        this.color = newcolor;
+    }
 
     /*
      * TODO: Create a method called addItem that takes in a String
@@ -76,9 +76,15 @@ public abstract class Bag {
      *       and false otherwise.
      */
 
-
-
-
+    public boolean addItem(String item) {
+        if (this.numberOfContents < this.capacity) {
+            this.contents[this.numberOfContents] = item;
+            this.numberOfContents = this.numberOfContents + 1;
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /**
      * TODO: Create a method called popItem that returns a String.
@@ -88,12 +94,19 @@ public abstract class Bag {
      *
      * If there are no items in this Bag, return null.
      *
-     * @return
+     * @return the last item added to this Bag or null if empty
      */
 
-
-
-
+    public String popItem() {
+        if (this.numberOfContents == 0) {
+            return null;
+        } else {
+            String thing = this.contents[this.numberOfContents - 1];
+            this.contents[this.numberOfContents - 1] = null;
+            this.numberOfContents = this.numberOfContents - 1 ;
+            return thing;
+        }
+    }
 
     /**
      * Increase this bag's capacity by n.
@@ -102,7 +115,19 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
+        // need to increase size of String[] contents
+        // need to change this.capacity
 
+        String[] new_contents = new String[this.capacity + n]; // making new list
+
+        if (this.capacity >= 0) System.arraycopy(this.contents, 0, new_contents, 0, this.capacity);
+
+        // for (int i = 0; i < this.capacity; i++) {
+        //            new_contents[i] = this.contents[i];
+        //        }
+
+        this.capacity = this.capacity + n;
+        this.contents = new_contents;
     }
 
     /**
@@ -110,7 +135,7 @@ public abstract class Bag {
      * This method requires you to have created the private
      * instance variables mentioned above.
      *
-     * @return
+     * @return a string implementation of this Bag
      */
     @Override
     public String toString() {
