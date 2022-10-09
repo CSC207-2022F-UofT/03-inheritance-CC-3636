@@ -14,8 +14,10 @@ public abstract class Bag {
      *       - an array of Strings named contents
      */
 
-
-
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents;
 
     /*
      * TODO: Create a constructor that takes two arguments:
@@ -27,8 +29,12 @@ public abstract class Bag {
      * its contents.)
      */
 
-
-
+    public Bag(String color, int capacity) {
+        this.color = color;
+        this.capacity = capacity;
+        this.contents = new String[capacity];
+        this.numberOfContents = 0;
+    }
 
     /*
      * TODO: Create a variety of 'getter' functions.
@@ -38,8 +44,17 @@ public abstract class Bag {
      *           - getCapacity
      */
 
+    public String getColor() {
+        return this.color;
+    }
 
+    public int getNumberOfContents() {
+        return this.numberOfContents;
+    }
 
+    public int getCapacity() {
+        return this.capacity;
+    }
 
     /*
      * TODO: Create a setter function called setColor which sets the
